@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --color-background: oklch(98.5% 0.012 140);
+  --color-foreground: oklch(22% 0.04 150);
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(22% 0.04 150);
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(22% 0.04 150);
+  --color-primary: oklch(52% 0.14 145);
+  --color-primary-foreground: oklch(99% 0.01 130);
+  --color-primary-glow: oklch(68% 0.16 145);
+  --color-secondary: oklch(94% 0.03 140);
+  --color-secondary-foreground: oklch(28% 0.06 150);
+  --color-muted: oklch(95% 0.02 140);
+  --color-muted-foreground: oklch(50% 0.03 150);
+  --color-accent: oklch(88% 0.08 140);
+  --color-accent-foreground: oklch(22% 0.06 150);
+  --color-destructive: oklch(60% 0.2 25);
+  --color-destructive-foreground: oklch(99% 0.01 130);
+  --color-border: oklch(90% 0.02 140);
+  --color-input: oklch(93% 0.02 140);
+  --color-ring: oklch(52% 0.14 145);
+  
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
+}
+
+@layer base {
+  :root {
+    --gradient-leaf: linear-gradient(135deg, oklch(52% 0.14 145), oklch(70% 0.16 140));
+    --gradient-soft: linear-gradient(180deg, oklch(98.5% 0.012 140), oklch(94% 0.03 140));
+    --shadow-leaf: 0 10px 30px -10px oklch(52% 0.14 145 / 0.3);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Glassmorphism card utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Custom micro-animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 oklch(52% 0.14 145 / 0.4);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px oklch(52% 0.14 145 / 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 oklch(52% 0.14 145 / 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
